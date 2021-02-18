@@ -1,0 +1,27 @@
+# The Dash Cell Phone Company charges customers a basic rate of $5 per month to send text messages. Additional rates are as follows:
+#
+# The first 100 messages per month, regardless of message length, are included in the basic bill.
+# An additional three cents are charged for each text message after the 100th message, up to and including 300 messages.
+# An additional two cents are charged for each text message after the 300th message.
+# Federal, state, and local taxes add a total of 14 percent to each bill.
+# Write a program that accepts the following data about one customer's messages: area code (three digits), phone number (seven digits), and number of text messages sent. Display all the data, including the month-end bill both before and after taxes are added.
+
+areaCode = int(input("What is the customer's three digit area code? "))
+phoneNum = int(input("What is the customer's seven digit phone number? "))
+messagesSent = int(input("How many messages has the customer sent this month? "))
+
+basicBill = 5
+totalTax = 0.14
+
+if messagesSent <= 100:
+    addFees = 0
+elif messagesSent in range(101, 300):
+    addFees = 199 * 0.03
+elif messagesSent >= 301:
+    addFees = (199 * 0.03) + (messagesSent - 300) * 0.02
+
+beforeTax = (basicBill + addFees)
+calcTax = beforeTax * totalTax
+finalTotal = round(beforeTax + calcTax, 2)
+
+print('Customer using phone number', str(areaCode) + str(phoneNum) + ' owes a total of $' + str(finalTotal) + ' for the month.')
